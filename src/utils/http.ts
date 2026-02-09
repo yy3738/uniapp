@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3000";
+const baseURL = "http://localhost:7788/api/";
 
 const httpInterceptor = {
   invoke(options: UniApp.RequestOptions) {
