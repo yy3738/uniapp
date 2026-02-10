@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "post-conversation": ".claude/hooks/post-conversation.sh"
+  },
+  "description": "Claude Code 配置文件 - 定义对话后自动更新文档的 hook"
+}

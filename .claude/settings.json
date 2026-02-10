@@ -1,7 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm:*)"
+      "Bash(pnpm:*)",
+      "Bash(git:*)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "^(请更新|更新|update).*(CLAUDE\\.md|claude\\.md|文档).*$",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "用户请求更新 CLAUDE.md。请执行以下步骤：\n\n1. 运行 `git diff --name-only` 查看工作区变更的文件\n2. 运行 `git diff` 查看详细变更内容\n3. 分析这些变更的需求、目的和技术要点\n4. 按照 CLAUDE.md 中已有的变更记录格式，追加新的变更记录\n5. 使用中文描述，突出业务价值和技术亮点\n6. 完成后提示用户可以提交代码了",
+            "statusMessage": "正在分析代码变更并更新文档..."
+          }
+        ]
+      }
     ]
   }
 }

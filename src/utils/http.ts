@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:7788/api/";
+const baseURL = "http://localhost:7788/api";
 
 const httpInterceptor = {
   invoke(options: UniApp.RequestOptions) {
@@ -10,10 +10,10 @@ const httpInterceptor = {
       ...options.header,
       "source-client": "miniprogram",
     };
-    //TODO:此处可以获取自己的token
-    const token = "";
+    // 从 localStorage 中获取 token
+    const token = uni.getStorageSync("token");
     if (token) {
-      options.header.Authorization = token;
+      options.header.Authorization = `Bearer ${token}`;
     }
     console.log(options);
   },
@@ -36,7 +36,13 @@ export const http = <T>(options: UniApp.RequestOptions) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data as Response<T>);
         } else if (res.statusCode === 401) {
-          //TODO:跳转到登录页
+          // 清除本地存储的 token
+          uni.removeStorageSync("token");
+          uni.removeStorageSync("username");
+          // 跳转到登录页
+          uni.reLaunch({
+            url: "/pages/login/login",
+          });
           reject(res);
         } else {
           uni.showToast({
