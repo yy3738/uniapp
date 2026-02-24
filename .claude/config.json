@@ -2,5 +2,10 @@
   "hooks": {
     "post-conversation": ".claude/hooks/post-conversation.sh"
   },
-  "description": "Claude Code 配置文件 - 定义对话后自动更新文档的 hook"
+  "description": "Claude Code 配置文件 - 定义对话后自动更新文档的 hook",
+  "mcpServers": {
+    "pencil": {
+      "command": "C:\\Users\\JSWPC2024101201\\.vscode\\extensions\\highagency.pencildev-0.6.22\\out\\mcp-server-windows-x64.exe"
+    }
+  }
 }
